@@ -3,10 +3,6 @@ package com.example.catalog.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.example.catalog.domain.Product;
@@ -16,11 +12,9 @@ import com.example.catalog.repository.ProductRepository;
 public class CatalogService {
 	@Autowired
 	private ProductRepository repository;
-	@Autowired
-	private MongoTemplate template;
 	
 	public List<Product> getProducts(){
-		return repository.findAll();
+		return (List<Product>) repository.findAll();
 	}
 	
 	public Product getProductById(String id) {
@@ -36,12 +30,13 @@ public class CatalogService {
 	}
 	
 	public Product updateAvailability(String productId, int change) {
-		template.updateFirst(
+		/*template.updateFirst(
 				Query.query(Criteria.where("id").is(productId)),
 				new Update().inc("availability", change),
 				Product.class
 				);
 		
-		return getProductById(productId);
+		return getProductById(productId);*/
+		return null;
 	}
 }

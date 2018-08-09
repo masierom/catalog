@@ -1,10 +1,18 @@
 package com.example.catalog.domain;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-public class Product {
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+public class Product {	
 	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
+	
 	private String title;
 	private String category;
 	private String description;
