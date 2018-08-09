@@ -30,13 +30,9 @@ public class CatalogService {
 	}
 	
 	public Product updateAvailability(String productId, int change) {
-		/*template.updateFirst(
-				Query.query(Criteria.where("id").is(productId)),
-				new Update().inc("availability", change),
-				Product.class
-				);
+		Product p = repository.findById(productId).orElse(null);
+		p.setAvailability(p.getAvailability() - change);
 		
-		return getProductById(productId);*/
-		return null;
+		return repository.save(p);
 	}
 }
